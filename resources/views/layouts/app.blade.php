@@ -2,10 +2,10 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Twins Pancacke</title>
+        <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Un dashboard pour la gestion des produits d'une petite entreprise de vente de crêpes." name="Twins Pancacke" />
-        <meta content="Coderthemes" name="author" />
+        <meta content="Dashboard" name="Wilfried KORANDJI" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -25,6 +25,51 @@
     </head>
 
     <body class="left-side-menu-dark">
+
+        <div id="wrapper">
+            <!-- Topbar Start -->
+            @include('admin.includes.topbar')
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            @include('admin.includes.left-sidebar')
+            <!-- Left Sidebar End -->
+
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        @yield('start-page-title')
+                        <!-- end page title -->
+
+                        @yield('content')
+
+                    </div>
+
+                </div>
+
+                <!-- Footer Start -->
+                @include('admin.includes.footer')
+                <!-- end Footer -->
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+
+        <!-- Right Sidebar -->
+        @include('admin.includes.right-sidebar')
+        <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
