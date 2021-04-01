@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.home');
+Route::middleware('guest')->group(function () {
+    Route::get('login', function () {
+        return view('admin.auth.login');
+    })->name('login');
+
+    Route::get('/', function () {
+        return view('admin.auth.login');
+    })->name('login');
+
+    Route::post('login', [Controllers\AuthController::class, 'auth'])->name('auth');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('home', [Controllers\DashboardController::class, 'home'])->name('dashboard');
+    Route::get('logout', [Controllers\AuthController::class, 'logout'])->name('logout');
+    Route::resources([
+        "products" => Controllers\ProductController::class,
+    ]);
 });
